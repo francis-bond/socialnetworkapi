@@ -1,6 +1,4 @@
 const { Schema, model } = require('mongoose');
-const thoughtSchema = require('./Thought');
-const reactionSchema = require('./Reaction');
 
 const userSchema = new Schema(
     {
@@ -18,12 +16,8 @@ const userSchema = new Schema(
         validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
       },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-      thoughts: [{type: Schema.Types.ObjectId, ref: 'thought'}],
-      friends: [{type: Schema.Types.ObjectId, ref: 'friend'}],
+      thoughts: [{type: Schema.Types.ObjectId, ref: 'Thought'}],
+      friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
     },
     {
       toJSON: {
